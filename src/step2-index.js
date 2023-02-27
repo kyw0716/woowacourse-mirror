@@ -12,4 +12,4 @@ eventHandler.setWinningNumbersInputHandler(
   lottoGameController.handleWinningNumbersInput.bind(lottoGameController)
 );
 eventHandler.setCloseModalHandler(view.closeModal);
-eventHandler.setRestartHandler(view.restart);
+eventHandler.setRestartHandler(view.restart.bind(view));
