@@ -30,6 +30,13 @@ const view = {
       .join('')}`;
   },
 
+  focusPriceInput() {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      $priceInput.focus();
+    }, 100);
+  },
+
   renderWinningNumbersInput() {
     $winningInputFlexBox.innerHTML = `
         <input
@@ -51,6 +58,11 @@ const view = {
         />`;
 
     $winningInputForm.hidden = false;
+    this.focusWinningNumberInput();
+  },
+
+  focusWinningNumberInput() {
+    document.getElementsByClassName('winningInput')[0].focus();
   },
 
   renderStatistics(rankCounts, profitRate) {
@@ -87,6 +99,7 @@ const view = {
     $priceInput.value = '';
 
     this.closeModal();
+    this.focusPriceInput();
   },
 };
 

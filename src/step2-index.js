@@ -5,6 +5,8 @@ import view from './view/view';
 
 const lottoGameController = new LottoGameController();
 
+view.focusPriceInput();
+
 eventHandler.setPurchasePriceInputHandler(
   lottoGameController.handlePurchasePriceInput.bind(lottoGameController)
 );
