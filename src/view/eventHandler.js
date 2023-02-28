@@ -36,6 +36,10 @@ const setCloseModalHandler = (handleCloseModal) => {
   $resultModalContainer.addEventListener('click', (event) => {
     if (event.target.id === 'resultModalContainer') handleCloseModal();
   });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.code === 'Escape') handleCloseModal();
+  });
 };
 
 const setRestartHandler = (handleRestart) => {
