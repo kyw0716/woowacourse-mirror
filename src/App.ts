@@ -29,7 +29,14 @@ export class App {
       const movieCard = target.closest("li");
       const movieId = movieCard?.dataset.movieId;
 
-      if (movieId) this.onClickMovieCard(Number(movieId));
+      if (!(movieCard instanceof HTMLElement)) return;
+
+      if (!movieId) {
+        alert("선택하신 영화 카드의 상세 정보가 존재하지 않습니다!");
+        return;
+      }
+
+      this.onClickMovieCard(Number(movieId));
     });
 
     $header.addEventListener("click", ({ target }) => {
