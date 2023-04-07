@@ -1,9 +1,11 @@
 import "./index.css";
 
+import { MovieDetailModal } from "./MovieDetailModal";
+import { ModalType, MovieId } from "./modalType";
+
 import xButtonImage from "../../../templates/xButton.png";
 
 import { $ } from "../../utils/selector";
-import { MovieDetailModal } from "./MovieDetailModal";
 
 export class Modal {
   #$movieDetail;
@@ -30,7 +32,7 @@ export class Modal {
     });
   }
 
-  open(modalType: "movieDetail", movieId: number | undefined) {
+  open(modalType: ModalType, movieId: MovieId) {
     const modalSection = $(".modal-section");
 
     if (modalType === "movieDetail" && movieId)
