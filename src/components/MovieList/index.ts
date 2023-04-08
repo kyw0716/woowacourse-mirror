@@ -2,7 +2,7 @@ import "./index.css";
 
 import type { MovieResponse } from "../../types";
 
-import { getURL, request } from "../../utils/api";
+import { getPopularMovies, getSearchResult } from "../../utils/api";
 import { $ } from "../../utils/selector";
 import {
   deleteSkeletonContainer,
@@ -38,9 +38,7 @@ export class MovieList {
     this.#$target.insertAdjacentElement("afterend", getSkeletonContainer());
 
     try {
-      const { results, total_pages } = await request(
-        getURL({ state: this.#state })
-      );
+      const { results, total_pages } = await getPopularMovies(this.#state.page);
 
       this.render(results, total_pages);
 
@@ -82,9 +80,10 @@ export class MovieList {
     this.showMore();
     showSkeletonContainer();
 
-    const { results, total_pages } = await request(
-      getURL({ state: this.#state })
-    );
+    const { results, total_pages } =
+      this.#state.showState === "popular"
+        ? await getPopularMovies(this.#state.page)
+        : await getSearchResult(this.#state.page, this.#state.searchKeyword);
 
     this.render(results, total_pages);
 
@@ -96,9 +95,10 @@ export class MovieList {
     showSkeletonContainer();
 
     try {
-      const { results, total_pages } = await request(
-        getURL({ state: this.#state })
-      );
+      const { results, total_pages } =
+        this.#state.showState === "popular"
+          ? await getPopularMovies(this.#state.page)
+          : await getSearchResult(this.#state.page, this.#state.searchKeyword);
 
       this.render(results, total_pages);
     } catch {

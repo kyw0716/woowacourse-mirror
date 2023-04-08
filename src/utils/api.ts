@@ -1,12 +1,5 @@
 import type { MovieDetail, MovieDetailResponse } from "../types";
 
-import { State } from "../components/MovieList";
-
-interface UrlParam {
-  state?: State;
-  movieId?: number;
-}
-
 const API_END_POINT = "https://api.themoviedb.org/3";
 
 export const request = async (url: string) => {
@@ -17,40 +10,36 @@ export const request = async (url: string) => {
       return response.json();
     }
 
-    throw new Error(`${response.status}`);
+    if (400 <= response.status && response.status < 500)
+      alert("요청하신 정보를 찾을 수 없습니다!");
+    if (500 <= response.status) alert("서버에서 오류가 발생했습니다!");
   } catch (error: any) {
-    if (error.message === "Failed to fetch") {
+    if (error.message === "Failed to fetch")
       alert("네트워크 연결이 종료되었습니다.");
-      return;
-    }
-
-    switch (error.message.slice(0, 1)) {
-      case "4":
-        alert("잘못된 요청입니다!");
-        break;
-      case "5":
-        alert("서버에서 오류가 발생했습니다.");
-        break;
-    }
   }
 };
 
-export const getURL = (urlParam: UrlParam) => {
-  if (urlParam.movieId)
-    return `${API_END_POINT}/movie/${urlParam.movieId}?api_key=${process.env.API_KEY}&language=ko`;
+export const getMovieInfoById = async (movieId: number) => {
+  const url = `${API_END_POINT}/movie/${movieId}?api_key=${process.env.API_KEY}&language=ko`;
+  const response = await request(url);
 
-  if (urlParam.state) {
-    if (urlParam.state.showState === "popular")
-      return `${API_END_POINT}/movie/popular?api_key=${process.env.API_KEY}&language=ko&page=${urlParam.state.page}`;
-    if (urlParam.state.showState === "search")
-      return `${API_END_POINT}/search/movie?api_key=${
-        process.env.API_KEY
-      }&language=ko&page=${urlParam.state.page}&query=${encodeURI(
-        urlParam.state.searchKeyword
-      )}`;
-  }
+  return response;
+};
 
-  throw new Error("url을 만들기 위한 올바른 인자값이 전달되지 않았습니다.");
+export const getPopularMovies = async (page: number) => {
+  const url = `${API_END_POINT}/movie/popular?api_key=${process.env.API_KEY}&language=ko&page=${page}`;
+  const response = await request(url);
+
+  return response;
+};
+
+export const getSearchResult = async (page: number, searchKeyword: string) => {
+  const url = `${API_END_POINT}/search/movie?api_key=${
+    process.env.API_KEY
+  }&language=ko&page=${page}&query=${encodeURI(searchKeyword)}`;
+  const response = await request(url);
+
+  return response;
 };
 
 export const convertMovieDetail = (

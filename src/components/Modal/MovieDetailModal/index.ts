@@ -10,7 +10,7 @@ import { $ } from "../../../utils/selector";
 import { renderStars } from "./StarSelect";
 import { getImageContainerTemplate } from "./Image";
 import { getDescriptionTemplate } from "./Description";
-import { convertMovieDetail, getURL, request } from "../../../utils/api";
+import { convertMovieDetail, getMovieInfoById } from "../../../utils/api";
 
 export class MovieDetailModal {
   #$target;
@@ -50,7 +50,7 @@ export class MovieDetailModal {
 
   async render(movieId: number) {
     const header = $(".modal-header--text");
-    const response = await request(getURL({ movieId: movieId }));
+    const response = await getMovieInfoById(movieId);
     const movieDetail = convertMovieDetail(response);
 
     if (header instanceof HTMLElement) header.textContent = movieDetail.title;
