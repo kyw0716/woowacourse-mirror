@@ -27,7 +27,7 @@ export class MovieDetailModal {
     this.#$target = $target;
   }
 
-  initStarRate() {
+  initSelectStarRate() {
     const starContainer = $$(".star");
     const starInput = $(".star-rating");
     const starRateNum = $(".star-rate-num");
@@ -79,7 +79,7 @@ export class MovieDetailModal {
       getStarRateFromStorage(movieId)
     );
 
-    this.initStarRate();
+    this.initSelectStarRate();
   }
 
   getMovieDetailTemplate(movie: MovieDetail, starRate: number) {

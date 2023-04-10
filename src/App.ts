@@ -19,10 +19,10 @@ export class App {
 
     this.#modal = new Modal($modal);
 
-    this.bindEvent($movieList, $header);
+    this.bindEvents($movieList, $header);
   }
 
-  bindEvent($movieList: Element, $header: Element) {
+  bindEvents($movieList: Element, $header: Element) {
     $movieList.addEventListener("click", ({ target }) => {
       if (!(target instanceof HTMLElement)) return;
 

@@ -15,10 +15,10 @@ export class Modal {
 
     ($(".x-button") as HTMLImageElement).src = xButtonImage;
 
-    this.bindEvent();
+    this.bindEvents();
   }
 
-  bindEvent() {
+  bindEvents() {
     $(".modal-backdrop").addEventListener("click", () => {
       this.close();
     });
