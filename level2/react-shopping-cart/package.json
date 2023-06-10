@@ -57,6 +57,7 @@
     ]
   },
   "devDependencies": {
+<<<<<<< HEAD:level2/react-shopping-cart/package.json
     "@storybook/addon-essentials": "^7.0.10",
     "@storybook/addon-interactions": "^7.0.10",
     "@storybook/addon-links": "^7.0.10",
@@ -64,6 +65,16 @@
     "@storybook/preset-create-react-app": "^7.0.10",
     "@storybook/react": "^7.0.10",
     "@storybook/react-webpack5": "^7.0.10",
+=======
+    "@kyw0716/woowacourse-scent-modal": "^0.0.5",
+    "@storybook/addon-essentials": "^7.0.5",
+    "@storybook/addon-interactions": "^7.0.5",
+    "@storybook/addon-links": "^7.0.5",
+    "@storybook/blocks": "^7.0.5",
+    "@storybook/preset-create-react-app": "^7.0.5",
+    "@storybook/react": "^7.0.5",
+    "@storybook/react-webpack5": "^7.0.5",
+>>>>>>> react-payments/step3:package.json
     "@storybook/testing-library": "^0.0.14-next.2",
     "@types/recoil": "^0.0.9",
     "@types/styled-components": "^5.1.26",

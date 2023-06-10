@@ -1,10 +1,15 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+<<<<<<< HEAD:level2/react-shopping-cart/.gitignore
 # storybook deploy
 storybook-static/
 
 # Co-authored
 .message.txt
+=======
+# story book deploy
+/storybook-static
+>>>>>>> react-payments/step3:.gitignore
 
 # dependencies
 /node_modules
